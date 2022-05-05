@@ -42,22 +42,38 @@ const App = () => {
     }
 
 
-    const updater = () =>{
+    // const updater = () =>{
+    //     let item = {name, email}
+    //     fetch(`http://localhost:3004/posts/${userID}`, {
+    //         method : 'PUT',
+    //         headers : {
+    //             'Accept' : 'application/json',
+    //             'Content-Type' : 'application/json'
+    //         },
+    //         body : JSON.stringify(item)
+    //     }).then((req) =>{
+    //         req.json().then((res)=>{
+    //             console.warn(res);
+    //             apiData();
+    //         })
+    //     })
+    // }
+
+    const updater = async() =>{
         let item = {name, email}
-        fetch(`http://localhost:3004/posts/${userID}`, {
+        const res = await fetch(`http://localhost:3004/posts/${userID}`,{
             method : 'PUT',
             headers : {
                 'Accept' : 'application/json',
                 'Content-Type' : 'application/json'
             },
             body : JSON.stringify(item)
-        }).then((req) =>{
-            req.json().then((res)=>{
-                console.warn(res);
-                apiData();
-            })
         })
+
+        const data = await res.json();
+        apiData();
     }
+
 
     // const driver2 = () =>{
     //     let data = {name, email};
